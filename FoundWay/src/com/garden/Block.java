@@ -12,8 +12,6 @@ public class Block {
     List<Route> routes = new ArrayList();
     List<Point> inPoints= new ArrayList();;
     List<Point> outPoints= new ArrayList();;
-    boolean isLive =true;
-
 }
 
 class Route {

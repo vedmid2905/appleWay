@@ -11,7 +11,6 @@ public class ApplesFounder {
 
     public int getApplesCountFromBestWayByMergeMetod(InputData inputData) {
 
-
         int countBlockX = inputData.columnSize / minBlockSize + inputData.columnSize % minBlockSize;
         int countBlockY = inputData.rowSize / minBlockSize + inputData.rowSize % minBlockSize;
         Block[][] blocks = new Block[countBlockX][countBlockY];
@@ -23,7 +22,6 @@ public class ApplesFounder {
                 setBlockInpoint(blocks[i][j]);
                 setBlockOutPoints(blocks[i][j], inputData);
                 setBlockRouters(blocks[i][j], inputData);
-
             }
         }
         boolean notOnlyOneBlock = true;
@@ -63,8 +61,6 @@ public class ApplesFounder {
                     blocks[i][index] = null;
                     index++;
                 }
-
-
             }
             notOnlyOneBlock = !checkForOne(blocks);
         }
@@ -73,10 +69,7 @@ public class ApplesFounder {
 
     private boolean checkForOne(Block[][] blocks) {
         for (int i = 0; i < blocks.length; i++) {
-          //  System.out.println ("i - "+i +"max - "+ blocks.length);
             for (int j = 0; j < blocks[i].length; j++) {
-              //  System.out.println ("j - "+j +"max - "+ blocks[i].length);
-            //    System.out.println ("blocks[i][j] ="+blocks[i][j]);
                 if (i != 0 && j != 0 && blocks[i][j] != null) return false;
             }
         }
@@ -191,29 +184,23 @@ public class ApplesFounder {
 
         Point top = block.start;
         Point bottom = block.end;
-        //vertical
-        // System.out.println("Vertical");
         for (int k = top.y; k < bottom.y + 1; k++) {
             if (bottom.x == inputData.columnSize - 1) {
                 if (k == bottom.y) {
                     block.outPoints.add(new Point(bottom.x, k));
-                    //     System.out.println(new Point(bottom.x, k));
                 }
 
             } else {
                 block.outPoints.add(new Point(bottom.x, k));
-                // System.out.println(new Point(bottom.x, k));
-            }
+                }
 
         }
         //horizontal
-        // System.out.println("Horizontal");
         for (int k = top.x; k < bottom.x - 1 + 1; k++) {
             if (bottom.y == inputData.rowSize - 1) {
                 break;
             } else {
                 block.outPoints.add(new Point(k, bottom.y));
-                //  System.out.println(new Point(k, bottom.y));
             }
 
 
@@ -222,10 +209,8 @@ public class ApplesFounder {
 
     void setLimitBlock(InputData inputData, Block block, int j, int i) {
         Point top = new Point(i * minBlockSize, j * minBlockSize);
-        int x = ((i + 1) * minBlockSize - 1 < inputData.columnSize - 1) ?
-                (i + 1) * minBlockSize - 1 : inputData.columnSize - 1;
-        int y = ((j + 1) * minBlockSize - 1 < inputData.rowSize - 1) ?
-                (j + 1) * minBlockSize - 1 : inputData.rowSize - 1;
+        int x = Math.min((i + 1) * minBlockSize - 1, inputData.columnSize - 1);
+        int y = Math.min((j + 1) * minBlockSize - 1, inputData.rowSize - 1);
         Point bottom = new Point(x, y);
         block.start = top;
         block.end = bottom;
@@ -302,16 +287,6 @@ public class ApplesFounder {
         result.add(getWayWithStartPoint(startPoint));
         for (int j = 0; j < maxIteration; j++) {
             result = getIterationWays(result, columnSize, rowSize);
-          /*  System.out.println("");
-            System.out.println("Iteration - " + j);
-            for (HedgehogWay hw : result) {
-                System.out.println("");
-                for (Point p : hw.way) {
-
-                    System.out.print(p + "  ");
-                }
-
-            }*/
         }
 
         return result;
