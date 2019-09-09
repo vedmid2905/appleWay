@@ -15,7 +15,6 @@ public class ApplesFounder {
         int countBlockX = inputData.columnSize / minBlockSize + inputData.columnSize % minBlockSize;
         int countBlockY = inputData.rowSize / minBlockSize + inputData.rowSize % minBlockSize;
         Block[][] blocks = new Block[countBlockX][countBlockY];
-        System.out.println("Strat prepare block");
         for (int j = 0; j < countBlockY; j++) {
             for (int i = 0; i < countBlockX; i++) {
 
@@ -27,7 +26,6 @@ public class ApplesFounder {
 
             }
         }
-        System.out.println("Finish prepare block");
         boolean notOnlyOneBlock = true;
         while (notOnlyOneBlock) {
             for (int j = 0; j < countBlockY; j++) {

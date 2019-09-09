@@ -28,7 +28,7 @@ public class ApplesFounderTest {
 
 
     @Test
-    public void checkAllWork() throws FileNotFoundException {
+    public void checkStartByTotalCheck()  throws FileNotFoundException {
 
         ApplesFounder af = new ApplesFounder();
         int result = af.getApplesCountBestWayByTotalCheck(inputData);
@@ -37,7 +37,7 @@ public class ApplesFounderTest {
 
     }
 
-    // @Test
+     @Test
     public void checkStartAnotherPositionWork() throws FileNotFoundException {
 
         ApplesFounder af = new ApplesFounder();
@@ -50,16 +50,12 @@ public class ApplesFounderTest {
         assertTrue("Wrong result from find way - " + result2, result2 == 6);
     }
 
-    // @Test
+    @Test
     public void checkMidlleFile() throws FileNotFoundException {
 
-
-        InputData inputData = ReadWriteFileUtils.getDataFromTextFile(new File("resource\\2.file"));
         ApplesFounder af = new ApplesFounder();
-        int result = af.getApplesCountBestWayByTotalCheck(inputData);
+        int result = af.getApplesCountBestWayByTotalCheck(inputData1);
         assertTrue("Wrong result from find way - " + result, result == 77);
-
-
     }
 
     @Test
@@ -359,36 +355,6 @@ public void testMergeRoutes1 (){
         assertTrue("Wrong bottom -" + block00.end, block00.end.equals(new Point(1, 2)));
     }
 
-    // @Test
-    public void checkUpSet() {
 
-        Set<Route> result = new HashSet();
-        Route r1 = new Route();
-        r1.start = new Point(0, 1);
-        r1.end = new Point(1, 0);
-        r1.length = 10;
-        Route r2 = new Route();
-        r2.start = new Point(0, 1);
-        r2.end = new Point(1, 0);
-        r2.length = 20;
-        result.add(r2);
-        result.remove(r1);
-        result.add(r1);
-
-        Iterator iterator = result.iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next());
-        }
-
-    }
-
-   @Test
-    public void checkUpSet5(){
-       System.out.println(inputData.columnSize);
-       System.out.println(inputData.rowSize);
-        System.out.println(inputData.garden.length);
-        System.out.println(inputData.garden[0].length);
-
-    }
 
 }
